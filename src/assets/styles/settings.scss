@@ -1,0 +1,54 @@
+// NOTE: All settings in this file should be exact the same with
+// https://github.com/juwai/ui.juwai.io/blob/master/src/scss/_settings.scss
+
+// Primary colors
+// =============================================================================
+
+$color__red: #e60000;
+$color__red--dark: #bf0000;
+
+$color__grey: #999;
+$color__grey--dark: #333;
+$color__grey--dark2: #555;
+$color__grey--light: #ddd;
+$color__grey--light2: #f7f7f7;
+
+$color__white: #fff;
+$color__orange: #ff5d00;
+$color__tale: #00abb4;
+$color__gold: #d3bc91;
+$color__gold--dark: #817359;
+
+$color__gold: #d3bc91;
+$color__gold--dark: #817359;
+
+$color__tale: #00abb4;
+
+// Transparencies
+$trans__black: rgba(0, 0, 0, 0.5);
+$trans__white: rgba(255, 255, 255, 0.5);
+
+// Fonts
+// =============================================================================
+$font-size--h6: 12px;
+$font-size--h5: 14px;
+$font-size--h4: 16px;
+$font-size--h3: 18px;
+$font-size--h2: 22px;
+$font-size--h1: 26px;
+
+$font-size__title: (
+    h1: $font-size--h1,
+    h2: $font-size--h2,
+    h3: $font-size--h3,
+    h4: $font-size--h4,
+    h5: $font-size--h5,
+    h6: $font-size--h6,
+);
+
+// Line heights.
+$line-height--xsmall : 1.1;
+$line-height--small  : 1.3;
+$line-height--normal : 1.5;
+$line-height--large  : 1.7;
+$line-height--xlarge : 2;

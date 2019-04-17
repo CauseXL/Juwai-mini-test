@@ -1,6 +1,18 @@
-# client
+# Juwai Mini Test
 
-## Project setup
+## Setting up the project
+
+Follow these steps to have the application working on your local machine.
+
+### Clone repository
+
+Follow the [standard Github workflow](https://github.com/juwai/in-house/blob/master/documentation/workflow-github.md).
+
+### Git hooks
+
+To setup pre commit Git hook, just simply `$ ln -s ../../scripts/pre-commit .git/hooks/pre-commit`.
+
+### install packages
 ```
 yarn install
 ```
@@ -15,20 +27,7 @@ yarn run serve
 yarn run build
 ```
 
-### Run your tests
-```
-yarn run test
-```
-
 ### Lints and fixes files
 ```
 yarn run lint
 ```
-
-### Run your unit tests
-```
-yarn run test:unit
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

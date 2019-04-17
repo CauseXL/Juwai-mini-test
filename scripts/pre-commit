@@ -3,9 +3,5 @@
 echo "Starting eslint…"
 yarn lint || exit 1
 
-# echo "Starting stylelint…"
-# yarn stylelint || exit 1
-
-# echo "Starting lintspace…"
-# yarn lintspace || exit 1
-
+echo "Starting stylelint…"
+yarn stylelint || exit 1
