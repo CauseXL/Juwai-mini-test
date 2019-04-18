@@ -16,7 +16,8 @@
     "popper.js": "^1.15.0",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
-    "vue-router": "^3.0.3"
+    "vue-router": "^3.0.3",
+    "vue-tel-input": "^2.0.21"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.6.0",

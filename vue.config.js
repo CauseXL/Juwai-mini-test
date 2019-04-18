@@ -17,7 +17,8 @@ module.exports = {
     },
     chainWebpack: (config) => {
         config.resolve.alias
-            .set('assets', resolve('src/assets'));
+            .set('assets', resolve('src/assets'))
+            .set('config', resolve('src/config'));
     },
     css: {
         sourceMap: true,
