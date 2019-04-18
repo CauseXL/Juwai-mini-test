@@ -1,12 +1,25 @@
 const path = require('path');
 
+function resolve(dir) {
+    return path.join(__dirname, dir);
+}
+
 module.exports = {
+    publicPath: '/',
+    productionSourceMap: false,
     lintOnSave: false,
-    configureWebpack: {
-        resolve: {
-            alias: {
-                assets: path.resolve(__dirname, './src/assets'),
-            },
-        },
+    devServer: {
+        open: true,
+    },
+    configureWebpack: (config) => {
+        /* eslint-disable no-param-reassign */
+        config.resolve.extensions = ['.js', '.vue', '.scss'];
+    },
+    chainWebpack: (config) => {
+        config.resolve.alias
+            .set('assets', resolve('src/assets'));
+    },
+    css: {
+        sourceMap: true,
     },
 };

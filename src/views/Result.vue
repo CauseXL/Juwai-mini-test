@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Enquiry from '@/components/Enquiry.vue';
+import Enquiry from '@/components/Enquiry';
 
 export default {
     name: 'result',
