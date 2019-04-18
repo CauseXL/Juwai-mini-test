@@ -12,6 +12,7 @@ module.exports = {
         'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
         indent: ['error', 4],
         'max-len': [1, 120, 4],
+        'import/extensions': ['js', 'scss', 'vue'],
     },
     parserOptions: {
         parser: 'babel-eslint',
