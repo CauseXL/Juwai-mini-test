@@ -93,8 +93,6 @@
     @import '~vue-tel-input/dist/vue-tel-input.css';
     @import 'assets/styles/settings';
     .c-enquiry {
-        border-radius: 7px;
-        background-color: $color__white;
         box-shadow: $box-shadow;
 
         // stylelint-disable-next-line
@@ -104,6 +102,10 @@
         }
 
         .c-enquiry__right {
+            @include mobile {
+                border-radius: 0 0 7px 7px;
+            }
+
             border-radius: 0 7px 7px 0;
             padding: 20px;
             color: $color__white;
@@ -111,7 +113,13 @@
         }
 
         .c-enquiry__left {
+            @include mobile {
+                border-radius: 7px 7px 0 0;
+            }
+
+            border-radius: 7px 0 0 7px;
             padding: 20px;
+            background-color: $color__white;
         }
 
         .c-enquiry__enquiry {

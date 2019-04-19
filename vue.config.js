@@ -5,7 +5,8 @@ function resolve(dir) {
 }
 
 module.exports = {
-    publicPath: '/',
+    publicPath: './',
+    // publicPath: 'http://staging1.juwaistatic.com/landing-pages/lp/minitest/',
     productionSourceMap: false,
     lintOnSave: false,
     devServer: {

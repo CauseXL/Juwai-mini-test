@@ -2,7 +2,7 @@
     <div class="c-juwai-select">
         <div class="c-juwai-select__titles">
             <h3 class="c-juwai-select__title">—— <strong>{{resultName}}首选</strong> ——</h3>
-            <h1 class="c-juwai-select__title-cover">RECOMMENDATIOIN</h1>
+            <h1 class="c-juwai-select__title-cover d-none">RECOMMENDATIOIN</h1>
         </div>
         <div class="c-juwai-select row">
             <div class="c-juwai-select__cards col-sm-3" v-for="data in listingsData" :key="data.id">
@@ -56,6 +56,10 @@
             text-align: center;
 
             .c-juwai-select__title {
+                @include mobile {
+                    font-size: $font-size--h3;
+                }
+
                 height: 50px;
             }
 
@@ -68,6 +72,10 @@
         }
 
         .c-juwai-select__card {
+            @include mobile {
+                margin-bottom: 20px;
+            }
+
             display: block;
             overflow: hidden;
             border-radius: 7px;
