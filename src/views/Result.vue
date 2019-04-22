@@ -150,7 +150,7 @@ export default {
         box-shadow: $box-shadow;
         padding: 50px 85px;
         background-color: $color__white;
-        transform: translateY(-250px);
+        transform: translateY(-180px);
     }
 
     .c-enquiry__container {

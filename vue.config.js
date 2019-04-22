@@ -1,12 +1,14 @@
 const path = require('path');
 
+// TODO: static url when live
+const livePath = 'http://staging1.juwaistatic.com/landing-pages/lp/minitest/';
+
 function resolve(dir) {
     return path.join(__dirname, dir);
 }
 
 module.exports = {
-    publicPath: './',
-    // publicPath: 'http://staging1.juwaistatic.com/landing-pages/lp/minitest/',
+    publicPath: process.env.NODE_ENV === 'production' ? livePath : './',
     productionSourceMap: false,
     lintOnSave: false,
     devServer: {

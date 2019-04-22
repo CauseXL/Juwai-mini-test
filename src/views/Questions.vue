@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col-md-3 col-sm-6 col-6" v-for="question in questions" :key="question.key">
                         <img class="c-questions__image" @click="nextQuestions"
-                            :src="`${publicPath}/img/questions/${type}/${question.name}.jpg`" alt="">
+                            :src="`${publicPath}img/questions/${type}/${question.name}.jpg`" alt="">
                         <p>{{question.name}}</p>
                     </div>
                 </div>
