@@ -11,7 +11,8 @@ export default {
 </script>
 
 <style lang="scss">
-    @import 'assets/styles/settings';
+    @import "assets/styles/settings";
+
     #app {
         background: $color__grey--light2;
     }

@@ -36,7 +36,7 @@
                                 隐私政策
                             </a>
                         </span>
-                        <button class="btn btn-danger" type="submit">提交</button>
+                        <button class="btn btn-danger c-enquiry__submit-btn" type="submit">提交</button>
                     </div>
                 </div>
             </form>
@@ -70,28 +70,30 @@
 </template>
 
 <script>
-    import VueTelInput from 'vue-tel-input';
-    export default {
-        components: {
-            VueTelInput,
+import VueTelInput from 'vue-tel-input';
+
+export default {
+    components: {
+        VueTelInput,
+    },
+    data() {
+        return {
+            phone: '',
+            email: '',
+        };
+    },
+    methods: {
+        onInput({ number, isValid, country }) {
+            console.log(number, isValid, country);
         },
-        data() {
-            return {
-                phone: '',
-                email: '',
-            };
-        },
-        methods: {
-            onInput({ number, isValid, country }) {
-                console.log(number, isValid, country);
-            },
-        },
-    }
+    },
+};
 </script>
 
 <style scoped lang="scss">
-    @import '~vue-tel-input/dist/vue-tel-input.css';
-    @import 'assets/styles/settings';
+    @import "~vue-tel-input/dist/vue-tel-input.css";
+    @import "assets/styles/settings";
+
     .c-enquiry {
         box-shadow: $box-shadow;
 
@@ -123,8 +125,6 @@
         }
 
         .c-enquiry__enquiry {
-            margin-right: 10px;
-
             .c-enquiry__phone {
                 padding: 8px 0;
             }
@@ -136,6 +136,10 @@
         }
 
         .c-enquiry__footer {
+            @include mobile {
+                display: block;
+            }
+
             display: flex;
             margin-top: 15px;
             align-items: center;
@@ -144,6 +148,13 @@
 
         .c-enquiry__disclaimer {
             font-size: $font-size--h6;
+        }
+
+        .c-enquiry__submit-btn {
+            @include mobile {
+                width: 100%;
+                margin-top: 15px;
+            }
         }
 
         .c-enquiry__link {

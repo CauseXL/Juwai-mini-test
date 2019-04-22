@@ -23,50 +23,51 @@
 </template>
 
 <script>
-    import Questions from '@/config/questions';
+import Questions from '@/config/questions';
 
-    export default {
-        data() {
-            return {
-                publicPath: process.env.BASE_URL,
-                questionName: '家庭情况',
-                questionsName: ['家庭情况', '生活方式', '地形偏好', '度假动机', '假期安排', '消费习惯', '物业类型', '区域偏好'],
-                types: Object.keys(Questions),
-                type: 'family',
-                questions: Questions.family.questions,
-                step: 0,
-            };
-        },
-        mounted () {
+export default {
+    data() {
+        return {
+            publicPath: process.env.BASE_URL,
+            questionName: '家庭情况',
+            questionsName: ['家庭情况', '生活方式', '地形偏好', '度假动机', '假期安排', '消费习惯', '物业类型', '区域偏好'],
+            types: Object.keys(Questions),
+            type: 'family',
+            questions: Questions.family.questions,
+            step: 0,
+        };
+    },
+    mounted() {
 
-        },
-        methods: {
-            nextQuestions() {
-                this.step +=1;
-                const percent = 100 / this.questionsName.length;
-                const progress = percent * this.step;
-                if ( this.step < this.questionsName.length) {
-                    this.type = this.types[this.step];
-                    this.questionName = this.questionsName[this.step];
-                    this.questions = Questions[this.type].questions;
-                    this.$Progress.set(progress);
-                } else {
-                    this.$Progress.finish();
-                    this.$router.push('/result');
-                }
+    },
+    methods: {
+        nextQuestions() {
+            this.step += 1;
+            const percent = 100 / this.questionsName.length;
+            const progress = percent * this.step;
+            if (this.step < this.questionsName.length) {
+                this.type = this.types[this.step];
+                this.questionName = this.questionsName[this.step];
+                this.questions = Questions[this.type].questions;
+                this.$Progress.set(progress);
+                window.scrollTo(0, 0);
+            } else {
+                this.$Progress.finish();
+                this.$router.push('/result');
             }
-        }
-    }
+        },
+    },
+};
 </script>
 
 <style scoped lang="scss">
-    @import 'assets/styles/settings';
+    @import "assets/styles/settings";
 
     .c-questions {
         .c-questions__banner {
             width: 100%;
             height: 50vh;
-            background: $linear-gradient, url('../assets/images/answerBanner.jpg') no-repeat;
+            background: $linear-gradient, url(../assets/images/answerBanner.jpg) no-repeat;
             background-size: cover;
         }
 
@@ -86,10 +87,10 @@
             }
 
             margin-left: 30px;
-            padding-bottom: 18px;
             border-bottom: 2px solid $color__white;
-            color: $color__white;
+            padding-bottom: 18px;
             font-size: $font-size--h2;
+            color: $color__white;
         }
 
         .c-questions__container {
@@ -101,11 +102,11 @@
 
             min-height: 723px;
             margin: 0 50px -180px;
-            padding: 50px 85px;
             border-radius: 10px;
+            padding: 50px 85px;
             box-shadow: $box-shadow;
-            background-color: $color__white;
             text-align: center;
+            background-color: $color__white;
             transform: translateY(-180px);
         }
 
@@ -115,8 +116,8 @@
                 font-size: $font-size--h3;
             }
 
-            font-weight: 300;
             margin-bottom: 50px;
+            font-weight: 300;
         }
 
         .c-questions__image {
@@ -132,7 +133,4 @@
             }
         }
     }
-
 </style>
-
-

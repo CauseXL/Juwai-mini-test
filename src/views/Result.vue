@@ -55,13 +55,14 @@ export default {
     methods: {
         reTest() {
             this.$router.push('/');
-        }
-    }
+        },
+    },
 };
 </script>
 
 <style scoped lang="scss">
-    @import 'assets/styles/settings';
+    @import "assets/styles/settings";
+
     .c-result {
         @include mobile {
             font-size: $font-size--h2;
@@ -81,14 +82,14 @@ export default {
             position: absolute;
             top: 50px;
             right: 0;
+            z-index: 1;
+            border: 1px solid $color__grey--light;
+            border-radius: 42px;
             padding: 15px 25px;
             font-size: $font-size--h2;
             color: $color__grey--dark;
-            border: 1px solid $color__grey--light;
-            border-radius: 42px;
-            background-color: $color__white;
             cursor: pointer;
-            z-index: 1;
+            background-color: $color__white;
         }
 
         .c-result__container {
@@ -119,14 +120,14 @@ export default {
 
         .c-result__desc {
             margin-bottom: 40px;
-            padding-left: 20px;
             border-left: 5px solid $color__red;
+            padding-left: 20px;
             font-weight: 300;
         }
 
         .c-result__btn {
-            padding: 15px 25px;
             border-radius: 42px;
+            padding: 15px 25px;
             font-size: $font-size--h2;
             color: $color__white;
             background-color: $color__red;
@@ -145,9 +146,9 @@ export default {
         }
 
         margin: 0 50px -180px;
-        padding: 50px 85px;
         border-radius: 10px;
         box-shadow: $box-shadow;
+        padding: 50px 85px;
         background-color: $color__white;
         transform: translateY(-250px);
     }
@@ -160,6 +161,7 @@ export default {
             @include mobile {
                 padding: 0 40px;
             }
+
             padding: 0 100px;
         }
     }

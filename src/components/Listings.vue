@@ -30,26 +30,26 @@
 </template>
 
 <script>
-    import VueTelInput from 'vue-tel-input';
-    import listingsData from '@/config/listings-data';
+import listingsData from '@/config/listings-data';
 
-    export default {
-        data() {
-            return {
-                resultName: '分时度假',
-                listingsData,
-            };
+export default {
+    data() {
+        return {
+            resultName: '分时度假',
+            listingsData,
+        };
+    },
+    methods: {
+        onInput({ number, isValid, country }) {
+            console.log(number, isValid, country);
         },
-        methods: {
-            onInput({ number, isValid, country }) {
-                console.log(number, isValid, country);
-            },
-        },
-    }
+    },
+};
 </script>
 
 <style scoped lang="scss">
-    @import 'assets/styles/settings';
+    @import "assets/styles/settings";
+
     .c-juwai-select {
         .c-juwai-select__titles {
             position: relative;
@@ -77,8 +77,8 @@
             }
 
             display: block;
-            overflow: hidden;
             border-radius: 7px;
+            overflow: hidden;
             color: $color__grey--dark;
             box-shadow: $box-shadow;
 
@@ -116,7 +116,6 @@
             }
         }
 
-
         .c-juwai-select__logo {
             max-width: 100px;
             max-height: 40px;
@@ -127,7 +126,7 @@
             padding: 15px;
             font-size: $font-size--h4;
             font-weight: 600;
-            color: #7F745B;
+            color: #7f745b;
             background-color: transparentize($color__gold, 0.8);
             justify-content: space-between;
             align-items: flex-end;

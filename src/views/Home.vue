@@ -25,14 +25,15 @@ export default {
     },
     data() {
         return {
-            backgroundType: 'home'
-        }
-    }
+            backgroundType: 'home',
+        };
+    },
 };
 </script>
 
 <style scoped lang="scss">
-    @import 'assets/styles/settings';
+    @import "assets/styles/settings";
+
     .c-home {
         position: relative;
         font-size: $font-size--h1;
@@ -66,8 +67,8 @@ export default {
         }
 
         .c-home__btn {
-            padding: 20px 30px;
             border-radius: 42px;
+            padding: 20px 30px;
             font-size: $font-size--h2;
             color: $color__white;
             background-color: $color__red;
@@ -78,4 +79,3 @@ export default {
         }
     }
 </style>
-

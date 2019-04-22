@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "stylelint": "stylelint \"src/**/*.{scss, vue}\"",
+    "stylelint": "stylelint \"src/**/*.vue\"",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
