@@ -1,10 +1,5 @@
 <template>
     <div id="app">
-        <div id="nav">
-            <router-link to="/">Home</router-link> |
-            <router-link to="/questions">Questions</router-link> |
-            <router-link to="/result">Result</router-link>
-        </div>
         <router-view/>
     </div>
 </template>
@@ -16,5 +11,9 @@ export default {
 </script>
 
 <style lang="scss">
+    @import "assets/styles/settings";
 
+    #app {
+        background: $color__grey--light2;
+    }
 </style>

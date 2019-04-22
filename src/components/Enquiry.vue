@@ -5,33 +5,38 @@
             <form class="c-enquiry__enquiry row">
                 <div class="col-sm-5">
                     <div class="form-group">
-                        <input class="form-control" type="text" name="name" placeholder="姓名*">
+                        <input class="form-control" type="text" name="name" placeholder="姓名*" required>
                     </div>
                     <div class="form-group">
-                        <input class="form-control" id="c-enquiry__phone"
-                            type="tel" name="phone" placeholder="电话*">
+                        <vue-tel-input class="form-control c-enquiry__phone" placeholder="电话*"
+                            v-model="phone"
+                            @onInput="onInput"
+                            :preferredCountries="['cn', 'hk', 'us']"
+                            disabledFetchingCountry
+                            required>
+                        </vue-tel-input>
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="email" name="email" placeholder="邮箱*">
+                        <input class="form-control" type="email" v-model="email" placeholder="邮箱*" required>
                     </div>
                 </div>
                 <div class="col-sm-7">
                     <textarea class="form-control c-enquiry__description" name="description"
-                        placeholder=""
+                        placeholder="（选填）您可输入对分时度假的疑问"
                     ></textarea>
                     <input type="hidden" name="web_case_id" id="web_case_id" value="">
                     <div class="c-enquiry__footer">
                         <span class="c-enquiry__disclaimer">
                             提交即为接受
-                            <a class="ui-u-color__red" href="http://www.juwai.com/general/legal/" target="_blank">
+                            <a class="c-enquiry__link" href="http://www.juwai.com/general/legal/" target="_blank">
                                 居外使用条款
                             </a>
                             和
-                            <a class="ui-u-color__red" href="http://www.juwai.com/general/privacy/" target="_blank">
+                            <a class="c-enquiry__link" href="http://www.juwai.com/general/privacy/" target="_blank">
                                 隐私政策
                             </a>
                         </span>
-                        <button class="btn ui-o-button ui-o-button--enquiry" type="submit">提交</button>
+                        <button class="btn btn-danger c-enquiry__submit-btn" type="submit">提交</button>
                     </div>
                 </div>
             </form>
@@ -55,8 +60,7 @@
                 <div class="input-group c-enquiry__lxb">
                     <input type="text" class="form-control c-enquiry__lxb-number" placeholder="请输入您的电话">
                     <span class="input-group-btn">
-                        <button class="btn ui-o-button ui-o-button--lxb
-                            js-channel-enquiry__send-to-lxb" type="button"
+                        <button class="btn btn-danger c-enquiry__cal-btn" type="button"
                         >给您回电</button>
                     </span>
                 </div>
@@ -65,102 +69,151 @@
     </div>
 </template>
 
+<script>
+import VueTelInput from 'vue-tel-input';
+
+export default {
+    components: {
+        VueTelInput,
+    },
+    data() {
+        return {
+            phone: '',
+            email: '',
+        };
+    },
+    methods: {
+        onInput({ number, isValid, country }) {
+            console.log(number, isValid, country);
+        },
+    },
+};
+</script>
+
 <style scoped lang="scss">
-@import 'assets/styles/settings';
-.c-enquiry {
-        padding-right: 0;
-        padding-left: 30px;
-        margin-top: 30px;
-        margin-bottom: 30px;
+    @import "~vue-tel-input/dist/vue-tel-input.css";
+    @import "assets/styles/settings";
 
-    .c-enquiry__right {
-        margin-top: -20px;
-        margin-bottom: -20px;
-        border-radius: 0 7px 7px 0;
-        padding: 20px;
-        color: $color__white;
-        background: $color__grey--dark2;
-    }
+    .c-enquiry {
+        box-shadow: $box-shadow;
 
-    .c-enquiry__enquiry {
-        margin-right: 10px;
-    }
+        // stylelint-disable-next-line
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 300;
+        }
 
-    .c-enquiry__description {
-        height: 175px !important;
-        resize: none;
-    }
+        .c-enquiry__right {
+            @include mobile {
+                border-radius: 0 0 7px 7px;
+            }
 
-    .c-enquiry__footer {
-        display: flex;
-        margin-top: 15px;
-        align-items: center;
-        justify-content: space-between;
-    }
+            border-radius: 0 7px 7px 0;
+            padding: 20px;
+            color: $color__white;
+            background: $color__grey--dark2;
+        }
 
-    .c-enquiry__disclaimer {
-        font-size: $font-size--h6;
-    }
+        .c-enquiry__left {
+            @include mobile {
+                border-radius: 7px 7px 0 0;
+            }
 
-    .c-enquiry__call-us {
-        border-bottom: 1px solid $color__grey;
-        padding-bottom: 20px;
-    }
+            border-radius: 7px 0 0 7px;
+            padding: 20px;
+            background-color: $color__white;
+        }
 
-    .c-enquiry__text--small {
-        font-size: $font-size--h6;
-        color: $color__grey--light;
-    }
+        .c-enquiry__enquiry {
+            .c-enquiry__phone {
+                padding: 8px 0;
+            }
 
-    .c-enquiry__phone-number {
-        display: block;
-        font-size: $font-size--h1;
-        font-weight: 300;
-        color: $color__white;
-    }
+            .c-enquiry__description {
+                height: 175px;
+                resize: none;
+            }
+        }
 
-    .c-enquiry__call-you-back {
-        margin-top: 20px;
-    }
+        .c-enquiry__footer {
+            @include mobile {
+                display: block;
+            }
 
-    .c-enquiry__lxb {
-        margin-top: 20px;
-    }
+            display: flex;
+            margin-top: 15px;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-    .ui-o-button {
-        &:focus {
-            outline: none;
+        .c-enquiry__disclaimer {
+            font-size: $font-size--h6;
+        }
+
+        .c-enquiry__submit-btn {
+            @include mobile {
+                width: 100%;
+                margin-top: 15px;
+            }
+        }
+
+        .c-enquiry__link {
+            color: $color__red;
+        }
+
+        .c-enquiry__call-us {
+            border-bottom: 1px solid $color__grey;
+            padding-bottom: 20px;
+        }
+
+        .c-enquiry__text--small {
+            font-size: $font-size--h6;
+            color: $color__grey--light;
+        }
+
+        .c-enquiry__phone-number {
+            display: block;
+            font-size: $font-size--h1;
+            font-weight: 300;
+            color: $color__white;
+        }
+
+        .c-enquiry__call-you-back {
+            margin-top: 20px;
+        }
+
+        .c-enquiry__lxb {
+            margin-top: 20px;
+        }
+
+        .c-enquiry__cal-btn {
+            height: 50px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .c-enquiry__lxb-number {
+            font-size: $font-size--h4;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            height: auto;
+            border-color: $color__grey--light;
+            padding: 12px;
+        }
+
+        .btn {
+            &:focus {
+                outline: none;
+            }
+        }
+
+        .btn-danger {
+            background: $color__red;
         }
     }
-
-    .ui-o-button--enquiry {
-        border-radius: 4px;
-        padding: 8px 15px;
-    }
-
-    .ui-o-button--lxb {
-
-        height: 50px;
-        border-radius: 0 4px 4px 0;
-    }
-
-    .c-enquiry__lxb-number {
-        font-size: $font-size--h4;
-    }
-
-    .form-group {
-        position: relative;
-        margin-bottom: 20px;
-    }
-
-    .form-control {
-        height: auto;
-        border-color: $color__grey--light;
-        padding: 12px;
-    }
-
-    .intl-tel-input {
-        width: 100%;
-    }
-}
 </style>

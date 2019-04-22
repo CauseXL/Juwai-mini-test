@@ -6,7 +6,7 @@ Vue.use(Router);
 
 export default new Router({
     mode: 'history',
-    base: process.env.BASE_URL,
+    base: process.env.NODE_ENV === 'production' ? '/lp/minitest/' : process.env.BASE_URL,
     routes: [{
         path: '/',
         name: 'home',
@@ -23,4 +23,7 @@ export default new Router({
         component: () => import(/* webpackChunkName: "result" */ './views/Result.vue'),
     },
     ],
+    scrollBehavior() {
+        return { x: 0, y: 0 };
+    },
 });
