@@ -62,7 +62,7 @@ export default {
         this.type = 'boheme';
         this.resultName = Results[this.type].title;
         this.resultDesc = Results[this.type].desc;
-    }
+    },
 };
 </script>
 
