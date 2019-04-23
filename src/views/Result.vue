@@ -1,6 +1,6 @@
 <template>
     <div>
-        <FullPage :backgroundType="backgroundType">
+        <FullPage :type="type">
             <div class="c-result container">
                 <div class="row">
                     <router-link class="c-result__retest" :to="{ name: 'home' }">
@@ -37,6 +37,7 @@
 import Listings from '@/components/Listings';
 import Enquiry from '@/components/Enquiry';
 import FullPage from '@/components/FullPage';
+import Results from '@/config/result';
 
 export default {
     name: 'result',
@@ -47,9 +48,9 @@ export default {
     },
     data() {
         return {
-            backgroundType: 'rich',
-            resultName: '分时度假',
-            resultDesc: '分时度假就是把酒店或度假村的一间客房或一套旅游公寓，以会员制的方式一次性出售给客户，会员获得每年到酒店或度假村住宿7天的一种休闲度假方式 。',
+            type: 'rich',
+            resultName: '',
+            resultDesc: '',
         };
     },
     methods: {
@@ -57,6 +58,11 @@ export default {
             this.$router.push('/');
         },
     },
+    created() {
+        this.type = 'boheme';
+        this.resultName = Results[this.type].title;
+        this.resultDesc = Results[this.type].desc;
+    }
 };
 </script>
 
@@ -145,7 +151,7 @@ export default {
             transform: translateY(-120px);
         }
 
-        margin: 0 50px -180px;
+        margin: 0 50px -100px;
         border-radius: 10px;
         box-shadow: $box-shadow;
         padding: 50px 85px;

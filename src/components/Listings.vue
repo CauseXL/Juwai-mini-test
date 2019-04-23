@@ -40,9 +40,7 @@ export default {
         };
     },
     methods: {
-        onInput({ number, isValid, country }) {
-            console.log(number, isValid, country);
-        },
+
     },
 };
 </script>
