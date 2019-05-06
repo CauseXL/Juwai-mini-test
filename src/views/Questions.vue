@@ -12,7 +12,7 @@
                 <h3 class="c-questions-list__title">以下哪一个最适合形容你？</h3>
                 <div class="row">
                     <div class="col-md-3 col-sm-6 col-6" v-for="question in questions" :key="question.key">
-                        <img class="c-questions__image" @click="nextQuestions"
+                        <img class="c-questions__image" @click="nextQuestions(question.value)"
                             :src="`${publicPath}img/questions/${type}/${question.name}.jpg`" alt="">
                         <p>{{question.name}}</p>
                     </div>
@@ -35,26 +35,43 @@ export default {
             type: 'family',
             questions: Questions.family.questions,
             step: 0,
+            score: {
+                rich: 0,
+                adventurer: 0,
+                boheme: 0,
+                wiser: 0,
+            },
         };
     },
     mounted() {
 
     },
     methods: {
-        nextQuestions() {
+        nextQuestions(value) {
             this.step += 1;
             const percent = 100 / this.questionsName.length;
             const progress = percent * this.step;
             if (this.step < this.questionsName.length) {
+                if (value) this.score[value] += 1;
                 this.type = this.types[this.step];
                 this.questionName = this.questionsName[this.step];
                 this.questions = Questions[this.type].questions;
                 this.$Progress.set(progress);
                 window.scrollTo(0, 0);
             } else {
+                this.getResult();
                 this.$Progress.finish();
                 this.$router.push('/result');
             }
+        },
+
+        getResult() {
+            const results = Object.keys(this.score);
+            const socres = Object.values(this.score);
+            console.log(socres);
+            const highestScore = Math.max(...socres);
+            const index = socres.indexOf(highestScore);
+            localStorage.setItem('resultName', results[index]);
         },
     },
 };

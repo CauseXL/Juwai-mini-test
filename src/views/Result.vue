@@ -20,9 +20,9 @@
                 </div>
             </div>
         </FullPage>
-        <div class="c-listings__container">
+        <div class="c-listings__container" v-if='false'>
             <div class="container">
-                <Listings />
+                <Listings :resultName='resultName' />
             </div>
         </div>
         <div class="c-enquiry__container" id="c-enquiry__container">
@@ -48,7 +48,7 @@ export default {
     },
     data() {
         return {
-            type: 'rich',
+            type: '',
             resultName: '',
             resultDesc: '',
         };
@@ -59,7 +59,7 @@ export default {
         },
     },
     created() {
-        this.type = 'boheme';
+        this.type = localStorage.getItem('resultName');
         this.resultName = Results[this.type].title;
         this.resultDesc = Results[this.type].desc;
     },

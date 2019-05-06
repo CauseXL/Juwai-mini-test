@@ -33,9 +33,9 @@
 import listingsData from '@/config/listings-data';
 
 export default {
+    props: ['resultName'],
     data() {
         return {
-            resultName: '分时度假',
             listingsData,
         };
     },

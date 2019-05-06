@@ -1,6 +1,6 @@
 <template>
     <div class="c-home">
-        <FullPage :backgroundType="backgroundType">
+        <FullPage :type="backgroundType">
             <div class="container">
                 <img class="c-home__logo" src="../assets/images/JuwaiLogo.svg" alt="logo">
             </div>

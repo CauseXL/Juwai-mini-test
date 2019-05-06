@@ -16,4 +16,8 @@ export default {
     #app {
         background: $color__grey--light2;
     }
+
+    #LXB_CONTAINER_SHOW {
+        display: none !important;
+    }
 </style>

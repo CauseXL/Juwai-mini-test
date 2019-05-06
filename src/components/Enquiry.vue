@@ -2,13 +2,15 @@
     <div class="c-enquiry row">
         <div class="col-sm-8 col-xs-12 c-enquiry__left">
             <h3><strong>免费</strong>咨询</h3>
-            <form class="c-enquiry__enquiry row">
+            <form class="c-enquiry__enquiry row" @submit.prevent="validateBeforeSubmit">
                 <div class="col-sm-5">
                     <div class="form-group">
-                        <input class="form-control" type="text" name="name" placeholder="姓名*" required>
+                        <input class="form-control" type="text" name="name" placeholder="姓名*" v-model="name"
+                            v-validate="'required'" :class="{ 'c-enquiry__error': errors.has('name') }">
                     </div>
                     <div class="form-group">
-                        <vue-tel-input class="form-control c-enquiry__phone" placeholder="电话*"
+                        <vue-tel-input class="form-control c-enquiry__phone" :class="{ 'c-enquiry__error': isError }"
+                            placeholder="电话*"
                             v-model="phone"
                             @onInput="onInput"
                             :preferredCountries="['cn', 'hk', 'us']"
@@ -17,11 +19,12 @@
                         </vue-tel-input>
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="email" v-model="email" placeholder="邮箱*" required>
+                        <input class="form-control" type="email" name="email" v-model="email" placeholder="邮箱*"
+                            v-validate="'required|email'" :class="{ 'c-enquiry__error': errors.has('email') }">
                     </div>
                 </div>
                 <div class="col-sm-7">
-                    <textarea class="form-control c-enquiry__description" name="description"
+                    <textarea class="form-control c-enquiry__description" name="description" v-model="desc"
                         placeholder="（选填）您可输入对分时度假的疑问"
                     ></textarea>
                     <input type="hidden" name="web_case_id" id="web_case_id" value="">
@@ -58,9 +61,10 @@
                 </span>
 
                 <div class="input-group c-enquiry__lxb">
-                    <input type="text" class="form-control c-enquiry__lxb-number" placeholder="请输入您的电话">
+                    <input type="text" class="form-control c-enquiry__lxb-number" id="c-enquiry__lxb-number"
+                        placeholder="请输入您的电话">
                     <span class="input-group-btn">
-                        <button class="btn btn-danger c-enquiry__cal-btn" type="button"
+                        <button class="btn btn-danger c-enquiry__cal-btn" type="button" @click="lxbCall"
                         >给您回电</button>
                     </span>
                 </div>
@@ -78,13 +82,47 @@ export default {
     },
     data() {
         return {
+            name: '',
             phone: '',
             email: '',
+            desc: '',
+            isError: false,
         };
     },
     methods: {
-        onInput({ number, isValid, country }) {
-            console.log(number, isValid, country);
+        onInput({ isValid }) {
+            this.isError = !isValid;
+        },
+
+        lxbCall() {
+            lxb.call(document.getElementById('c-enquiry__lxb-number'));
+        },
+
+        validateBeforeSubmit() {
+            if (!this.isError && this.phone) {
+                this.$validator.validateAll().then((result) => {
+                    if (result) {
+                        const url = 'https://www.juwai.com/?c=collect&a=sale_force_data';
+                        const {
+                            name, phone, email, desc,
+                        } = this;
+                        this.$http.post(url, {
+                            name,
+                            email,
+                            phone,
+                            reg: 0,
+                            COMMENT: desc,
+                            IS_ENQUIRY: 1,
+                        }).then((res) => {
+                            if (res.result === 1) {
+                                alert('提交成功！');
+                            } else {
+                                alert('提交失败！');
+                            }
+                        });
+                    }
+                });
+            }
         },
     },
 };
@@ -214,6 +252,10 @@ export default {
 
         .btn-danger {
             background: $color__red;
+        }
+
+        .c-enquiry__error {
+            border-color: $color__red;
         }
     }
 </style>
