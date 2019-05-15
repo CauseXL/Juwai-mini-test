@@ -109,7 +109,7 @@ export default {
                         } = this;
                         const countryCode = phone.split(' ').slice(0, 1).toString();
                         const mobile = phone.split(' ').slice(1, phone.length - 1).join('');
-                        const surveryId = localStorage.getItem('surveryId');
+                        // const surveryId = localStorage.getItem('surveryId');
                         this.$http.post(url, {
                             orgid: '00D90000000lh7N',
                             // web case id

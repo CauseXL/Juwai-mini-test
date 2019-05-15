@@ -52,8 +52,8 @@ export default {
             const percent = 100 / this.questionsName.length;
             const progress = percent * this.step;
             this.answers.push({
-                question: this.step,
-                answer: id,
+                'question': this.step,
+                'answer': id,
             });
             console.log(this.answers);
             if (this.step < this.questionsName.length) {
@@ -85,14 +85,14 @@ export default {
         },
 
         sendResult(answers, resultId) {
-            // TODO:
-            const url = 'http://con-3368.www.juwai.io/?c=collect&a=saveSurveyData';
+            const url = `http://con-3368.www.juwai.io/?c=collect&a=saveSurveyData`;
+            // const url = `${location.origin}/?c=collect&a=saveSurveyData`;
             const data = {
-                questionAnswer: answers,
-                result: resultId,
+                'questionAnswer': answers,
+                'result': resultId,
             };
             this.$http.post(url, data).then((res) => {
-                if (res.code === 100) {
+                if (res.data.code === 100) {
                     console.log('成功！');
                 } else {
                     console.log('失败！');

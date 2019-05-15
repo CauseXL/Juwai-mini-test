@@ -26,4 +26,11 @@ module.exports = {
     css: {
         sourceMap: true,
     },
+    pwa: {
+        iconPaths: {
+            favicon32: resolve('public/favicon.png'),
+            favicon16: resolve('public/favicon.png'),
+            appleTouchIcon: resolve('public/favicon.png'),
+        },
+    },
 };
