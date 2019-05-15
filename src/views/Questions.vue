@@ -12,9 +12,8 @@
                 <h3 class="c-questions-list__title">以下哪一个最适合形容你？</h3>
                 <div class="row">
                     <div class="col-md-3 col-sm-6 col-6" v-for="question in questions" :key="question.key">
-                        <img class="c-questions__image" @click="nextQuestions(question.value)"
+                        <img class="c-questions__image" @click="nextQuestions(question.value, question.answerId)"
                             :src="`${publicPath}img/questions/${type}/${question.name}.jpg`" alt="">
-                        <p>{{question.name}}</p>
                     </div>
                 </div>
             </div>
@@ -41,16 +40,22 @@ export default {
                 boheme: 0,
                 wiser: 0,
             },
+            answers: [],
         };
     },
     mounted() {
 
     },
     methods: {
-        nextQuestions(value) {
+        nextQuestions(value, id) {
             this.step += 1;
             const percent = 100 / this.questionsName.length;
             const progress = percent * this.step;
+            this.answers.push({
+                'question': this.step,
+                'answer': id,
+            });
+            console.log(this.answers);
             if (this.step < this.questionsName.length) {
                 if (value) this.score[value] += 1;
                 this.type = this.types[this.step];
@@ -71,8 +76,38 @@ export default {
             console.log(socres);
             const highestScore = Math.max(...socres);
             const index = socres.indexOf(highestScore);
+            const resultId = index + 1;
+            this.sendResult(this.answers, resultId);
+            console.log(resultId);
+            // const surveryId = this.generateSurveryId();
             localStorage.setItem('resultName', results[index]);
+            // localStorage.setItem('surveryId', surveryId);
         },
+
+        sendResult(answers, resultId) {
+            // TODO:
+            const url = 'http://con-3368.www.juwai.io/?c=collect&a=saveSurveyData';
+            const data = {
+                "questionAnswer": answers,
+                "result": resultId,
+            };
+            this.$http.post(url, data).then((res) => {
+                if (res.code === 100) {
+                    console.log('成功！');
+                } else {
+                    console.log('失败！');
+                }
+            });
+        },
+
+        generateSurveryId() {
+            const possible = 'abcdefghijklmnopqrstuvwxyz';
+            let text = '';
+            for (let i = 0; i < 8; i += 1) {
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+            }
+            return `${Date.now()}-${text}`;
+        }
     },
 };
 </script>

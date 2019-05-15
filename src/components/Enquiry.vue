@@ -102,17 +102,28 @@ export default {
             if (!this.isError && this.phone) {
                 this.$validator.validateAll().then((result) => {
                     if (result) {
+                        // TODO:
                         const url = 'https://www.juwai.com/?c=collect&a=sale_force_data';
-                        const {
-                            name, phone, email, desc,
-                        } = this;
+                        const { name, phone, email, desc } = this;
+                        const countryCode = phone.split(' ').slice(0, 1).toString();
+                        const mobile = phone.split(' ').slice(1, phone.length - 1).join('');
+                        const surveryId = localStorage.getItem('surveryId');
                         this.$http.post(url, {
-                            name,
-                            email,
-                            phone,
-                            reg: 0,
-                            COMMENT: desc,
-                            IS_ENQUIRY: 1,
+                            'orgid': '00D90000000lh7N',
+                            // web case id
+                            // '00N6F00000Hs3en': surveryId,
+                            // name
+                            'name': name,
+                            // country code
+                            'countryCode': countryCode,
+                            // phone
+                            'phone': mobile,
+                            //email
+                            'email': email,
+                            'description': desc,
+                            'type': 'Time Share',
+                            'originType': 'timeShare',
+                            'origin': screen.width > 768 ? 'Web' : 'HTML5',
                         }).then((res) => {
                             if (res.result === 1) {
                                 alert('提交成功！');

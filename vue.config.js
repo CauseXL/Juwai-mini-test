@@ -1,7 +1,7 @@
 const path = require('path');
 
-// TODO: static url when live
-const livePath = 'http://staging1.juwaistatic.com/landing-pages/lp/minitest/';
+// TODO: static url when live "https://www.juwaistatic.com/landing-pages/lp/campaign/timeshare-survey/">
+const livePath = 'http://staging1.juwaistatic.com/landing-pages/lp/campaign/timeshare-survey/';
 
 function resolve(dir) {
     return path.join(__dirname, dir);
