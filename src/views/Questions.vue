@@ -55,7 +55,6 @@ export default {
                 'question': this.step,
                 'answer': id,
             });
-            console.log(this.answers);
             if (this.step < this.questionsName.length) {
                 if (value) this.score[value] += 1;
                 this.type = this.types[this.step];
@@ -78,20 +77,48 @@ export default {
             const index = socres.indexOf(highestScore);
             const resultId = index + 1;
             this.sendResult(this.answers, resultId);
-            console.log(resultId);
             // const surveryId = this.generateSurveryId();
             localStorage.setItem('resultName', results[index]);
             // localStorage.setItem('surveryId', surveryId);
         },
 
         sendResult(answers, resultId) {
-            const url = `http://con-3368.www.juwai.io/?c=collect&a=saveSurveyData`;
-            // const url = `${location.origin}/?c=collect&a=saveSurveyData`;
+            // const url = `http://www.juwai.io/?c=collect&a=saveSurveyData`;
+            const url = `${location.origin}/?c=collect&a=saveSurveyData`;
             const data = {
-                'questionAnswer': answers,
+                'questionAnswer[0][question]': answers[0].question,
+                'questionAnswer[0][answer]': answers[0].answer,
+                'questionAnswer[1][question]': answers[1].question,
+                'questionAnswer[1][answer]': answers[1].answer,
+                'questionAnswer[2][question]': answers[2].question,
+                'questionAnswer[2][answer]': answers[2].answer,
+                'questionAnswer[3][question]': answers[3].question,
+                'questionAnswer[3][answer]': answers[3].answer,
+                'questionAnswer[4][question]': answers[4].question,
+                'questionAnswer[4][answer]': answers[4].answer,
+                'questionAnswer[5][question]': answers[5].question,
+                'questionAnswer[5][answer]': answers[5].answer,
+                'questionAnswer[6][question]': answers[6].question,
+                'questionAnswer[6][answer]': answers[6].answer,
+                'questionAnswer[7][question]': answers[7].question,
+                'questionAnswer[7][answer]': answers[7].answer,
                 'result': resultId,
             };
-            this.$http.post(url, data).then((res) => {
+            this.$http({
+                url,
+                data,
+                method: 'post',
+                transformRequest: [function (data) {
+                    let ret = ''
+                    for (let it in data) {
+                        ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+                    }
+                    return ret
+                }],
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                }
+            }).then((res) => {
                 if (res.data.code === 100) {
                     console.log('成功！');
                 } else {

@@ -1,7 +1,7 @@
 const path = require('path');
 
-// TODO: static url when live "https://www.juwaistatic.com/landing-pages/lp/campaign/timeshare-survey/">
-const livePath = 'http://staging1.juwaistatic.com/landing-pages/lp/campaign/timeshare-survey/';
+// TODO: static url when live "http://staging1.juwaistatic.com/landing-pages/lp/campaign/timeshare-survey/">
+const livePath = 'https://www.juwaistatic.com/landing-pages/lp/campaign/timeshare-survey/';
 
 function resolve(dir) {
     return path.join(__dirname, dir);
@@ -28,9 +28,9 @@ module.exports = {
     },
     pwa: {
         iconPaths: {
-            favicon32: resolve('public/favicon.png'),
-            favicon16: resolve('public/favicon.png'),
-            appleTouchIcon: resolve('public/favicon.png'),
+            favicon32: 'favicon.png',
+            favicon16: 'favicon.png',
+            appleTouchIcon: 'favicon.png',
         },
     },
 };

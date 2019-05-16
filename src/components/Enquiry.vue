@@ -102,32 +102,43 @@ export default {
             if (!this.isError && this.phone) {
                 this.$validator.validateAll().then((result) => {
                     if (result) {
-                        // TODO:
-                        const url = 'https://www.juwai.com/?c=collect&a=sale_force_data';
+                        const url = `${location.origin}/?c=collect&a=sale_force_data`;
+                        // const url = `http://www.juwai.io/?c=collect&a=sale_force_data`;
                         const {
                             name, phone, email, desc,
                         } = this;
                         const countryCode = phone.split(' ').slice(0, 1).toString();
                         const mobile = phone.split(' ').slice(1, phone.length - 1).join('');
                         // const surveryId = localStorage.getItem('surveryId');
-                        this.$http.post(url, {
-                            orgid: '00D90000000lh7N',
-                            // web case id
-                            // '00N6F00000Hs3en': surveryId,
-                            // name
-                            name,
-                            // country code
-                            countryCode,
-                            // phone
-                            phone: mobile,
-                            // email
-                            email,
-                            description: desc,
-                            type: 'Time Share',
-                            originType: 'timeShare',
-                            origin: screen.width > 768 ? 'Web' : 'HTML5',
+                        this.$http({
+                            url,
+                            method: 'post',
+                            data: {
+                                orgid: '00D90000000lh7N',
+                                // web case id
+                                // '00N6F00000Hs3en': surveryId,
+                                name,
+                                countryCode,
+                                phone: mobile,
+                                email,
+                                description: desc,
+                                type: 'Time Share',
+                                originType: 'timeShare',
+                                origin: screen.width > 768 ? 'Web' : 'HTML5',
+                            },
+                            transformRequest: [function (data) {
+                                let ret = ''
+                                for (let it in data) {
+                                    ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+                                }
+                                return ret
+                            }],
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded',
+                                'X-Requested-With': 'XMLHttpRequest',
+                            }
                         }).then((res) => {
-                            if (res.result === 1) {
+                            if (res.data.result === 1) {
                                 alert('提交成功！');
                             } else {
                                 alert('提交失败！');
