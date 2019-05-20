@@ -25,7 +25,7 @@
                 </div>
                 <div class="col-sm-7">
                     <textarea class="form-control c-enquiry__description" name="description" v-model="desc"
-                        placeholder="（选填）您可输入对分时度假的疑问"
+                        placeholder="（选填) 您可输入对分时度假的疑问，举例：你们可以给我更多关于当地房产的资料吗？"
                     ></textarea>
                     <input type="hidden" name="web_case_id" id="web_case_id" value="">
                     <div class="c-enquiry__footer">
@@ -47,7 +47,7 @@
 
         <div class="col-sm-4 col-xs-12 c-enquiry__right">
             <div class="c-enquiry__call-us">
-                <h3 class="u-margin__top--0"><strong>买家服务热线</strong></h3>
+                <h3 class="u-margin__top--0"><strong>居外服务热线</strong></h3>
                 <span class="c-enquiry__text--small">周一至周日 9:00 - 21:00</span>
                 <a class="c-enquiry__phone-number" href="tel:+86 400 041 7515">
                     400 041 7515
@@ -103,7 +103,7 @@ export default {
                 this.$validator.validateAll().then((result) => {
                     if (result) {
                         const url = `${location.origin}/?c=collect&a=sale_force_data`;
-                        // const url = `http://www.juwai.io/?c=collect&a=sale_force_data`;
+                        // const url = `http://con-3368-change.www.juwai.io/?c=collect&a=sale_force_data`;
                         const {
                             name, phone, email, desc,
                         } = this;
@@ -115,6 +115,8 @@ export default {
                             method: 'post',
                             data: {
                                 orgid: '00D90000000lh7N',
+                                // Case owner
+                                // '00G90000000PTnH': 'Consumer Queue',
                                 // web case id
                                 // '00N6F00000Hs3en': surveryId,
                                 name,
@@ -125,6 +127,8 @@ export default {
                                 type: 'Time Share',
                                 originType: 'timeShare',
                                 origin: screen.width > 768 ? 'Web' : 'HTML5',
+                                source: 'Landing Page',
+                                subject: 'Timeshare Property Enquiry',
                             },
                             transformRequest: [function (data) {
                                 let ret = ''
@@ -216,6 +220,12 @@ export default {
             @include mobile {
                 width: 100%;
                 margin-top: 15px;
+            }
+
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+                transform: scale(1.03);
             }
         }
 

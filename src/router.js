@@ -21,8 +21,7 @@ export default new Router({
         path: '/result',
         name: 'result',
         component: () => import(/* webpackChunkName: "result" */ './views/Result.vue'),
-    },
-    ],
+    }],
     scrollBehavior() {
         return { x: 0, y: 0 };
     },

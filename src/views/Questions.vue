@@ -4,12 +4,12 @@
         <div class="c-questions__banner">
             <div class="container">
                 <img class="c-questions__logo" src="../assets/images/JuwaiLogo.svg" alt="logo">
-                <span class="c-questions__title">最适合你的{{questionName}}</span>
+                <span class="c-questions__title">以下哪一个最适合形容你？</span>
             </div>
         </div>
         <div class="c-questions__container">
             <div class="container">
-                <h3 class="c-questions-list__title">以下哪一个最适合形容你？</h3>
+                <h3 class="c-questions-list__title">最适合你的{{questionName}}</h3>
                 <div class="row">
                     <div class="col-md-3 col-sm-6 col-6" v-for="question in questions" :key="question.key">
                         <img class="c-questions__image" @click="nextQuestions(question.value, question.answerId)"
@@ -29,7 +29,7 @@ export default {
         return {
             publicPath: process.env.BASE_URL,
             questionName: '家庭情况',
-            questionsName: ['家庭情况', '生活方式', '地形偏好', '度假动机', '假期安排', '消费习惯', '物业类型', '区域偏好'],
+            questionsName: ['家庭情况', '生活方式', '地形偏好', '度假动机', '假期安排', '消费习惯', '物业类型', '区域偏好(所在大洲)'],
             types: Object.keys(Questions),
             type: 'family',
             questions: Questions.family.questions,
@@ -83,7 +83,7 @@ export default {
         },
 
         sendResult(answers, resultId) {
-            // const url = `http://www.juwai.io/?c=collect&a=saveSurveyData`;
+            // const url = `http://con-3368-change.www.juwai.io/?c=collect&a=saveSurveyData`;
             const url = `${location.origin}/?c=collect&a=saveSurveyData`;
             const data = {
                 'questionAnswer[0][question]': answers[0].question,
@@ -146,7 +146,7 @@ export default {
         .c-questions__banner {
             width: 100%;
             height: 50vh;
-            background: $linear-gradient, url(../assets/images/answerBanner.jpg) no-repeat;
+            background: $linear-gradient, url(../assets/images/answerBanner.jpg) no-repeat center;
             background-size: cover;
         }
 
@@ -174,13 +174,15 @@ export default {
 
         .c-questions__container {
             @include mobile {
+                position: absolute;
+                top: 350px;
                 margin: 0 20px -100px;
                 padding: 20px;
-                transform: translateY(-120px);
             }
 
+            max-width: 1080px;
             min-height: 723px;
-            margin: 0 50px -180px;
+            margin: 0 auto -180px;
             border-radius: 10px;
             padding: 50px 85px;
             box-shadow: $box-shadow;
@@ -206,9 +208,11 @@ export default {
             border-radius: 15px;
             box-shadow: $box-shadow;
             cursor: pointer;
+            transition: all 0.2s ease-in-out;
 
             &:hover {
-                border: 5px solid $color__red;
+                transform: scale(1.03);
+                box-shadow: 0 0 0 5px $color__red;
             }
         }
     }

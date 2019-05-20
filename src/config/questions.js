@@ -76,7 +76,7 @@ const Questions = {
         ],
     },
     region: {
-        title: '区域偏好',
+        title: '区域偏好(所在大洲)',
         questions: [
             { answerId: 41, key: 'North-America', name: '北美', value: '' },
             { answerId: 42, key: 'Asian', name: '亚洲', value: '' },

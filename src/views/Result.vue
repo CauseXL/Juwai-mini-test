@@ -89,6 +89,7 @@ export default {
             top: 50px;
             right: 0;
             z-index: 1;
+            display: inline-block;
             border: 1px solid $color__grey--light;
             border-radius: 42px;
             padding: 15px 25px;
@@ -96,6 +97,12 @@ export default {
             color: $color__grey--dark;
             cursor: pointer;
             background-color: $color__white;
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+                transform: scale(1.03);
+                text-decoration: none;
+            }
         }
 
         .c-result__container {
@@ -132,13 +139,16 @@ export default {
         }
 
         .c-result__btn {
+            display: inline-block;
             border-radius: 42px;
             padding: 15px 25px;
             font-size: $font-size--h2;
             color: $color__white;
             background-color: $color__red;
+            transition: all 0.2s ease-in-out;
 
             &:hover {
+                transform: scale(1.03);
                 text-decoration: none;
             }
         }
