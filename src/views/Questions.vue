@@ -13,7 +13,7 @@
                 <div class="row">
                     <div class="col-md-3 col-sm-6 col-6" v-for="question in questions" :key="question.key">
                         <img class="c-questions__image" @click="nextQuestions(question.value, question.answerId)"
-                            :src="`${publicPath}img/questions/${type}/${question.name}.jpg`" alt="">
+                            :src="getImgUrl(question)" alt="">
                     </div>
                 </div>
             </div>
@@ -47,6 +47,10 @@ export default {
 
     },
     methods: {
+        getImgUrl(question) {
+            return require(`../assets/images/questions/${this.type}/${question.name}.jpg`)
+        },
+
         nextQuestions(value, id) {
             this.step += 1;
             const percent = 100 / this.questionsName.length;

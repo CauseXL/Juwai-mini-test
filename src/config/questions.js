@@ -60,7 +60,7 @@ const Questions = {
         questions: [
             { answerId: 31, key: 'LV', name: 'LV', value: '' },
             { answerId: 32, key: 'coach', name: 'coach', value: '' },
-            { answerId: 33, key: 'zara', name: 'zara', value: '' },
+            { answerId: 33, key: 'adidas', name: 'adidas', value: '' },
             { answerId: 34, key: 'hm', name: 'hm', value: '' },
         ],
     },
