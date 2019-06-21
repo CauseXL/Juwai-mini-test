@@ -48,7 +48,7 @@ export default {
     },
     methods: {
         getImgUrl(question) {
-            return require(`../assets/images/questions/${this.type}/${question.name}.jpg`)
+            return require(`../assets/images/questions/${this.type}/${question.name}.jpg`);
         },
 
         nextQuestions(value, id) {
@@ -56,8 +56,8 @@ export default {
             const percent = 100 / this.questionsName.length;
             const progress = percent * this.step;
             this.answers.push({
-                'question': this.step,
-                'answer': id,
+                question: this.step,
+                answer: id,
             });
             if (this.step < this.questionsName.length) {
                 if (value) this.score[value] += 1;
@@ -106,22 +106,22 @@ export default {
                 'questionAnswer[6][answer]': answers[6].answer,
                 'questionAnswer[7][question]': answers[7].question,
                 'questionAnswer[7][answer]': answers[7].answer,
-                'result': resultId,
+                result: resultId,
             };
             this.$http({
                 url,
                 data,
                 method: 'post',
                 transformRequest: [function (data) {
-                    let ret = ''
-                    for (let it in data) {
-                        ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+                    let ret = '';
+                    for (const it in data) {
+                        ret += `${encodeURIComponent(it)}=${encodeURIComponent(data[it])}&`;
                     }
-                    return ret
+                    return ret;
                 }],
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
-                }
+                },
             }).then((res) => {
                 if (res.data.code === 100) {
                     console.log('成功！');

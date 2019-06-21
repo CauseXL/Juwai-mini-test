@@ -131,16 +131,16 @@ export default {
                                 subject: 'Timeshare Property Enquiry',
                             },
                             transformRequest: [function (data) {
-                                let ret = ''
-                                for (let it in data) {
-                                    ret += encodeURIComponent(it) + '=' + encodeURIComponent(data[it]) + '&'
+                                let ret = '';
+                                for (const it in data) {
+                                    ret += `${encodeURIComponent(it)}=${encodeURIComponent(data[it])}&`;
                                 }
-                                return ret
+                                return ret;
                             }],
                             headers: {
                                 'Content-Type': 'application/x-www-form-urlencoded',
                                 'X-Requested-With': 'XMLHttpRequest',
-                            }
+                            },
                         }).then((res) => {
                             if (res.data.result === 1) {
                                 alert('提交成功！');
