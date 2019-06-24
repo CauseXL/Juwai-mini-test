@@ -1,7 +1,7 @@
 <template>
     <div class="c-enquiry row">
-        <div class="col-sm-8 col-xs-12 c-enquiry__left">
-            <h3><strong>免费</strong>咨询</h3>
+        <div class="col-sm-9 col-xs-12 c-enquiry__left">
+            <h3 class="c-enquiry__title"><strong>免费</strong>定制分时度假旅行计划</h3>
             <form class="c-enquiry__enquiry row" @submit.prevent="validateBeforeSubmit">
                 <div class="col-sm-5">
                     <div class="form-group">
@@ -25,7 +25,7 @@
                 </div>
                 <div class="col-sm-7">
                     <textarea class="form-control c-enquiry__description" name="description" v-model="desc"
-                        placeholder="（选填) 您可输入对分时度假的疑问，举例：你们可以给我更多关于当地房产的资料吗？"
+                        placeholder="了解更多分时度假或海外房产相关资讯（选填）"
                     ></textarea>
                     <input type="hidden" name="web_case_id" id="web_case_id" value="">
                     <div class="c-enquiry__footer">
@@ -45,15 +45,15 @@
             </form>
         </div>
 
-        <div class="col-sm-4 col-xs-12 c-enquiry__right">
+        <div class="col-sm-3 col-xs-12 c-enquiry__right">
             <div class="c-enquiry__call-us">
-                <h3 class="u-margin__top--0"><strong>居外服务热线</strong></h3>
+                <h3 class="u-margin__top--0"><strong>买家服务热线</strong></h3>
                 <span class="c-enquiry__text--small">周一至周日 9:00 - 21:00</span>
                 <a class="c-enquiry__phone-number" href="tel:+86 400 041 7515">
                     400 041 7515
                 </a>
             </div>
-            <div class="c-enquiry__call-you-back">
+            <!-- <div class="c-enquiry__call-you-back">
                 <h3 class="u-margin__top--0"><strong>免费通话</strong></h3>
                 <span class="c-enquiry__text--small">
                     我们将立即回电。该通话对您免费，请放心接听。
@@ -68,7 +68,7 @@
                         >给您回电</button>
                     </span>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
@@ -102,7 +102,7 @@ export default {
             if (!this.isError && this.phone) {
                 this.$validator.validateAll().then((result) => {
                     if (result) {
-                        const url = `${location.origin}/?c=collect&a=sale_force_data`;
+                        const url = `${window.location.origin}/?c=collect&a=sale_force_data`;
                         // const url = `http://con-3368-change.www.juwai.io/?c=collect&a=sale_force_data`;
                         const {
                             name, phone, email, desc,
@@ -126,7 +126,7 @@ export default {
                                 description: desc,
                                 type: 'Time Share',
                                 originType: 'timeShare',
-                                origin: screen.width > 768 ? 'Web' : 'HTML5',
+                                origin: window.screen.width > 768 ? 'Web' : 'HTML5',
                                 source: 'Landing Page',
                                 subject: 'Timeshare Property Enquiry',
                             },
@@ -161,6 +161,7 @@ export default {
     @import "assets/styles/settings";
 
     .c-enquiry {
+        color: $color__grey--dark;
         box-shadow: $box-shadow;
 
         // stylelint-disable-next-line
@@ -174,8 +175,10 @@ export default {
                 border-radius: 0 0 7px 7px;
             }
 
+            display: flex;
+            align-items: center;
             border-radius: 0 7px 7px 0;
-            padding: 20px;
+            padding: 30px;
             color: $color__white;
             background: $color__grey--dark2;
         }
@@ -188,6 +191,12 @@ export default {
             border-radius: 7px 0 0 7px;
             padding: 20px;
             background-color: $color__white;
+        }
+
+        .c-enquiry__title {
+            @include mobile {
+                font-size: 20px;
+            }
         }
 
         .c-enquiry__enquiry {
@@ -231,11 +240,6 @@ export default {
 
         .c-enquiry__link {
             color: $color__red;
-        }
-
-        .c-enquiry__call-us {
-            border-bottom: 1px solid $color__grey;
-            padding-bottom: 20px;
         }
 
         .c-enquiry__text--small {

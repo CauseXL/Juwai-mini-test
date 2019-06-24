@@ -9,9 +9,9 @@
         </div>
         <div class="c-questions__container">
             <div class="container">
-                <h3 class="c-questions-list__title">最适合你的{{questionName}}</h3>
+                <h3 class="c-questions-list__title">{{questionName}}</h3>
                 <div class="row">
-                    <div class="col-md-3 col-sm-6 col-6" v-for="question in questions" :key="question.key">
+                    <div class="col-md-3 col-sm-6 col-6" v-for="question in questions" :key="question.id">
                         <img class="c-questions__image" @click="nextQuestions(question.value, question.answerId)"
                             :src="getImgUrl(question)" alt="">
                     </div>
@@ -28,11 +28,12 @@ export default {
     data() {
         return {
             publicPath: process.env.BASE_URL,
-            questionName: '家庭情况',
-            questionsName: ['家庭情况', '生活方式', '地形偏好', '度假动机', '假期安排', '消费习惯', '物业类型', '区域偏好(所在大洲)'],
+            questionName: '每年有几次旅行计划？',
+            // Object.values(Questions).map((v) => v.title)
+            questionsName: Object.values(Questions).map(v => v.title),
             types: Object.keys(Questions),
-            type: 'family',
-            questions: Questions.family.questions,
+            type: 'plan',
+            questions: Questions.plan.questions,
             step: 0,
             score: {
                 rich: 0,
@@ -88,7 +89,7 @@ export default {
 
         sendResult(answers, resultId) {
             // const url = `http://con-3368-change.www.juwai.io/?c=collect&a=saveSurveyData`;
-            const url = `${location.origin}/?c=collect&a=saveSurveyData`;
+            const url = `${window.location.origin}/?c=collect&a=saveSurveyData`;
             const data = {
                 'questionAnswer[0][question]': answers[0].question,
                 'questionAnswer[0][answer]': answers[0].answer,
@@ -185,7 +186,7 @@ export default {
             }
 
             max-width: 1080px;
-            min-height: 723px;
+            // min-height: 723px;
             margin: 0 auto -180px;
             border-radius: 10px;
             padding: 50px 85px;

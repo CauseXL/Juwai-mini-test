@@ -32,7 +32,8 @@ export default {
 
     .c-full-page__home {
         @include mobile {
-            background: $linear-gradient-mobile, url(../assets/images/homeBanner.jpg) no-repeat center;
+            background: $linear-gradient-mobile, url(../assets/images/homeBanner.jpg) no-repeat;
+            background-position: right;
             background-size: cover;
         }
 
